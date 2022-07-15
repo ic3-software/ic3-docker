@@ -26,6 +26,14 @@ For a quick trial using the embedded community license and the data being kept w
 
 See this [page](./icCube/README.md) for more options for running this Docker.
 
+### Access
+
+Once started you can access icCube by opening a browser:
+
+    http://localhost:8282/icCube/console
+
+Login as `anonymous` (i.e., leave blank the username) or login with `admin / admin`.
+
 ### Build
 
 Download/copy `icCube.8.2.0.zip`:

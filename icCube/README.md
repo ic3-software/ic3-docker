@@ -91,4 +91,12 @@ Similarly, you can override single files (e.g., the license and the Java RAM set
 
 An approach using Docker volumes should be very similar.
 
+### Access
+
+Once started you can access icCube by opening a browser:
+
+    http://localhost:8282/icCube/console
+
+Login as `anonymous` (i.e., leave blank the username) or login with `admin / admin`.
+
 _

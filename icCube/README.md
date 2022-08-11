@@ -26,12 +26,12 @@ For a quick trial using the embedded community license and the data being kept w
 The following is demonstrating both how to store `icCube-data` in the host and how to use specific configuration files
 from the host using Docker bind mounts:
 
-    ICCUBE_BIN=           -- host folder containing icCube.lic, icCube.xml, ...
+    ICCUBE_BIN=           -- host folder containing icCube-4.lic, icCube.xml, ...
                                     container: /opt/icCube/bin
                                                     icCube.xml                : configuration
                                                     icCube-notification.xml   : configuration
                                                     icCube.sh                 : startup script (JVM config)
-                                                    icCube.lic                : license
+                                                    icCube-4.lic              : license
                                                     log4j.xml                 : Log4J 2 configuration
                                                     icCubeUsers.icc-users     : inital users configuration    (*)
                                                     icCubeRoles.icc-roles     : inital roles configuration    (*)
@@ -64,12 +64,12 @@ Docker's volumes instead:
 
 Similarly, you can override single files (e.g., the license and the Java RAM settings):
 
-    ICCUBE_BIN=           -- host folder containing icCube.lic, icCube.xml, ...
+    ICCUBE_BIN=           -- host folder containing icCube-4.lic, icCube.xml, ...
                                     container: /opt/icCube/bin
                                                     icCube.xml              : configuration
                                                     icCube-notification.xml : configuration
                                                     icCube.sh               : startup script (JVM config)
-                                                    icCube.lic              : license
+                                                    icCube-4.lic            : license
                                                     log4j.xml               : Log4J 2 configuration
 
     ICCUBE_WEB_DATA=      -- host folder containing data that can used as schema data source, etc...

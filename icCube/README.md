@@ -91,6 +91,34 @@ Similarly, you can override single files (e.g., the license and the Java RAM set
 
 An approach using Docker volumes should be very similar.
 
+### Run (Chrome/Chromium headless)
+
+icCube is using Chrome/Chromium headless for **printing** the dashboards. You can start Chrome/Chromium either with
+a security profile (advised) as following:
+
+    docker run ... \
+        --security-opt seccomp=$BASEDIR/chrome.json \
+        ...
+
+Or with the `--no-sandbox` option is the security profile is not possible: 
+
+    docker run ... \
+        -e ICCUBE_CHROME_NO_SANDBOX=1 \
+        ...
+    
+### Run (JAVA Options)
+
+You can fully configure the **JVM** by using your own `icCube.sh` file as demonstrated above, or you can
+configure the JVM parameters using the `ICCUBE_JAVA_OPTS` environment variable to the `docker run` command.
+
+For example the following is configuring the JVM with `1g` or RAM:
+
+    docker run ... \
+        -e ICCUBE_JAVA_OPTS="-Xms1g -Xmx1g" \
+        ...
+
+Note that you can check how this variable is being used in the `script/etc/icCube.sh` file in this project.
+
 ### Access
 
 Once started you can access icCube by opening a browser:

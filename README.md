@@ -36,19 +36,18 @@ Login as `anonymous` (i.e., leave blank the username) or login with `admin / adm
 
 ### Build
 
-Download/copy `icCube.8.2.0.zip`:
+Get the icCube ZIP URL ready. Alternatively, you can have locally the ZIP and run a simple HTTP server:
 
     # mkdir /tmp/icCube
-    # cp ~/icCube-8.2.0.zip /tmp/icCube
+    # cp ~/icCube-8.2.2.zip /tmp/icCube
     # cd /tmp/icCube
     # python3 -m http.server 8080
 
-Using a simple HTTP server to retrieve `@192.168.1.47` (i.e., `localhost`) the icCube zip
-(`COPY` is creating a larger layer in the image):
+Then using `http://192.168.1.47:8080/icCube-8.2.2.zip` or the icCube ZIP URL:
 
-    # cd ~/icCube/src/icCube/etc/docker
+    # cd ~/src/ic3-docker/docker
     # sudo ./scripts/build_core.sh
-    # sudo ./scripts/build.sh http://192.168.1.47:8080/icCube-8.2.0.zip
+    # sudo ./scripts/build.sh http://192.168.1.47:8080/icCube-8.2.2.zip
 
 Should you want to build your own image feel free to update the various `Dockerfile` and `scripts`
 available in this project.

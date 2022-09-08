@@ -10,7 +10,7 @@ account.
 For a quick trial using the embedded community license and the data being kept within the container:
 
     docker run -d --name icCube-community --restart unless-stopped -p 8282:8282 \
-            ic3software/iccube:latest
+            ic3software/iccube:8.2.2
 
 See this [page](./RUN_ADVANCED.md) for more options for running this Docker.
 

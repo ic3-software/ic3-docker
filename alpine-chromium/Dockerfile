@@ -1,10 +1,5 @@
 FROM alpine:3.16.2
 
-#
-# As small as possible without printing required (no Chrome/Chromium being installed).
-# Can be built for amd64 and arm64 (e.g., M1) architecture.
-#
-
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
@@ -17,6 +12,12 @@ RUN set -eux\
     && apk --repository https://repos.azul.com/zulu/alpine --no-cache add zulu17-jre~=17.0.4.1 tzdata
 
 ENV JAVA_HOME=/usr/lib/jvm/zulu17-ca
+
+#
+# Chromium (printing) : ~350m
+#
+RUN set -eux\
+    apk upgrade --no-cache --available && apk add --no-cache chromium
 
 ARG ICCUBE_KIT_URL
 
@@ -37,10 +38,17 @@ RUN set -eux \
 # Make fileSystemRoot visible from icCube as a shared drive.
     && sed -i 's/fileSystemRoot value=""/fileSystemRoot value="\/home\/ic3\/data"/g' /opt/icCube/bin/icCube.xml \
     && sed -i 's/fileSystemRootVisibleInDocs value="false"/fileSystemRootVisibleInDocs value="true"/g' /opt/icCube/bin/icCube.xml  \
+# Printing requires an enterprise license.
+    && sed -i 's/printComponentConfiguration active="false"/printComponentConfiguration active="true"/g' /opt/icCube/bin/icCube.xml \
+    && sed -i 's/<!--<exec>chromium<\/exec>-->/<exec>chromium-browser<\/exec>/g' /opt/icCube/bin/icCube.xml \
 # Create the ic3 user.
     && addgroup -S ic3 && adduser -S ic3 -G ic3 \
-    && mkdir -p /home/ic3/data \
-    && chown -R ic3:ic3 /home/ic3
+    && mkdir -p /home/ic3/data && chown -R ic3:ic3 /home/ic3
+
+#
+# Printing: cdp4j safe_process : not required (otherwise amd64 only: Windows/Linux/MacOS).
+#
+ENV ICCUBE_NO_SAFE_PROCESS=1
 
 #
 # icCube listening HTTP port.

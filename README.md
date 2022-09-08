@@ -35,9 +35,9 @@ Then using `http://192.168.1.47:8080/icCube-8.2.2.zip` or the icCube ZIP URL:
 
     # cd ~/src/ic3-docker/docker
     # Debian/Chrome
-    # sudo ./scripts/build-debian.sh http://192.168.1.47:8080/icCube-8.2.2.zip
+    # sudo ./scripts/build-debian.sh http://192.168.1.47:8080/icCube-8.2.2.zip 8.2.2
     # Alpine/Chromium
-    # sudo ./scripts/buildx-alpine.sh http://192.168.1.47:8080/icCube-8.2.2.zip
+    # sudo ./scripts/buildx-alpine.sh http://192.168.1.47:8080/icCube-8.2.2.zip 8.2.2-chromium
 
 Should you want to build your own image feel free to update the various `Dockerfile` and `scripts`
 available in this project.

@@ -10,7 +10,7 @@ account.
 For a quick trial using the embedded community license and the data being kept within the container:
 
     docker run -d --name icCube-community --restart unless-stopped -p 8282:8282 \
-            ic3software/iccube:8.2.2
+            ic3software/iccube:8.3.0
 
 See this [page](./RUN_ADVANCED.md) for more options for running this Docker.
 
@@ -24,22 +24,28 @@ Login as `anonymous` (i.e., leave blank the username) or login with `admin / adm
 
 ### Build 
 
-Get the icCube ZIP URL ready. Alternatively, you can have locally the ZIP and run a simple HTTP server:
+Should you want to build your own image feel free to update the various `Dockerfile` and `scripts`
+available in this project.
+
+For building the Docker images, get the icCube ZIP URL ready. Let's call it `ICCUBE_URL` later in this document. 
+Alternatively, you can have locally the ZIP and run a simple HTTP server as following:
 
     # mkdir /tmp/icCube
-    # cp ~/icCube-8.2.2.zip /tmp/icCube
+    # cp ~/icCube-8.3.0.zip /tmp/icCube
     # cd /tmp/icCube
     # python3 -m http.server 8080
 
-Then using `http://192.168.1.47:8080/icCube-8.2.2.zip` or the icCube ZIP URL:
+Then the ICCUBE_URL would be: `http://192.168.1.47:8080/icCube-8.3.0.zip` assuming your IP is `192.168.1.47`.
+You might want to use `http://host.docker.internal:8080/icCube-8.3.0.zip` on **Windows**.
+
+Building the Docker based on Debian and Chrome headless:
 
     # cd ~/src/ic3-docker/docker
-    # Debian/Chrome
-    # sudo ./scripts/build-debian.sh http://192.168.1.47:8080/icCube-8.2.2.zip 8.2.2
-    # Alpine/Chromium
-    # sudo ./scripts/buildx-alpine.sh http://192.168.1.47:8080/icCube-8.2.2.zip 8.2.2-chromium
+    # sudo ./scripts/build-debian.sh ICCUBE_URL 8.3.0
 
-Should you want to build your own image feel free to update the various `Dockerfile` and `scripts`
-available in this project.
+Building the (multi-architecture) Docker based on Alpine and Chromium headless:
+
+    # cd ~/src/ic3-docker/docker
+    # sudo ./scripts/buildx-alpine.sh ICCUBE_URL 8.3.0-chromium
 
 _

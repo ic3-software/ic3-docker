@@ -19,7 +19,7 @@ echo "TAG:$2"
 # Assuming QEMU is being installed and a buildx builder has been created, build amd64 & arm64 images.
 # The shell is being logged into a Docker repository to be able to export and push the images.
 #
-docker buildx build ./alpine-chromium \
+docker buildx build --no-cache ./alpine-chromium \
         -t "ic3software/iccube:$2" \
         --platform linux/amd64,linux/arm64 --push \
         --build-arg ICCUBE_KIT_URL="$1"

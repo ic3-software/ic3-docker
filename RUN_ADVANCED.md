@@ -54,6 +54,8 @@ from the host using Docker bind mounts:
             ic3software/iccube:latest
 
 (*) Those files are used to set up once the content of the `/home/ic3/icCube-data` corresponding directories.
+Please refer to this [page](https://www.iccube.com/support/documentation/user_guide/running_iccube/data_directory.php)
+for some description of these folders.
 
 This example is assuming the Bind Mounts in the host are accessible from the Docker user. This should be fine for
 development or evaluation purpose. For a production, please refer to the following stackoverflow discussions and/or use

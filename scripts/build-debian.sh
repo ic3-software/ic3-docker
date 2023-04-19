@@ -15,6 +15,6 @@ fi
 echo "URL:$1"
 echo "TAG:$2"
 
-docker build ./debian-chrome \
+docker build --no-cache ./debian-chrome \
         -t "ic3software/iccube:$2" \
         --build-arg ICCUBE_KIT_URL="$1"

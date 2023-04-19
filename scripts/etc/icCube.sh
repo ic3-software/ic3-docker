@@ -15,26 +15,35 @@ JAVA=java
 ICCUBE=$( cd "$( dirname "$0" )/.." && pwd )
 
 #
-# icCube configuration file
+# icCube configuration file. Use the existing ICCUBE_CONFIGURATION otherwise the default from install.
+# Handy when run from a Docker.
 #
+if [ -z "$ICCUBE_CONFIGURATION" ]; then
 ICCUBE_CONFIGURATION=$ICCUBE/bin/icCube.xml
+fi
 
 #
-# icCube LOG4J configuration file
+# icCube LOG4J configuration file. Use the existing ICCUBE_LOG4J_CONFIGURATION otherwise the default from install.
+# Handy when run from a Docker.
 #
+if [ -z "$ICCUBE_LOG4J_CONFIGURATION" ]; then
 ICCUBE_LOG4J_CONFIGURATION=$ICCUBE/bin/log4j.xml
+fi
 
 #
-# icCube license file
+# icCube license file. Use the existing ICCUBE_LICENSE otherwise the default from install.
+# Handy when run from a Docker.
 #
+if [ -z "$ICCUBE_LICENSE" ]; then
 ICCUBE_LICENSE=$ICCUBE/bin/icCube-4.lic
+fi
 
 export ICCUBE_LICENSE ICCUBE_CONFIGURATION ICCUBE_LOG4J_CONFIGURATION
 
 #
-# Redefining java.io.tmpdir because cdp4j is attempting to create the file cdp4j-yeshup-1.0.0/yeshup
-# into that directory. This might lead to access rights issue when using several icCube users on the
-# machine. Ensure to have a different java.io.tmpdir for each user.
+# Redefining java.io.tmpdir because cdp4j is attempting to create the folder cdp4j into that directory.
+# This might lead to access rights issue when using several icCube users on the machine. Ensure to have
+# a different java.io.tmpdir for each user.
 #
 ICCUBE_USER=$(id -nu)
 ICCUBE_TMPDIR=/tmp/$ICCUBE_USER

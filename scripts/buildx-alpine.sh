@@ -13,13 +13,13 @@ if [ -z "$2" ]
 fi
 
 echo "URL:$1"
-echo "TAG:$2"
+echo "TAG:$2-chromium"
 
 #
 # Assuming QEMU is being installed and a buildx builder has been created, build amd64 & arm64 images.
 # The shell is being logged into a Docker repository to be able to export and push the images.
 #
 docker buildx build --no-cache ./alpine-chromium \
-        -t "ic3software/iccube:$2" \
+        -t "ic3software/iccube:$2-chromium" \
         --platform linux/amd64,linux/arm64 --push \
         --build-arg ICCUBE_KIT_URL="$1"

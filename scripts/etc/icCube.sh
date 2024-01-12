@@ -14,31 +14,32 @@ JAVA=java
 #
 ICCUBE=$( cd "$( dirname "$0" )/.." && pwd )
 
+# There is no need to define those environment variables like that as this is the default behavior.
+# Especially, do not define ICCUBE_LICENSE as we want to be able to start wo/ license now.
+# Kept as a way to know about those variables used by icCube internally if required.
 #
 # icCube configuration file. Use the existing ICCUBE_CONFIGURATION otherwise the default from install.
 # Handy when run from a Docker.
 #
-if [ -z "$ICCUBE_CONFIGURATION" ]; then
-ICCUBE_CONFIGURATION=$ICCUBE/bin/icCube.xml
-fi
-
+# if [ -z "$ICCUBE_CONFIGURATION" ]; then
+# ICCUBE_CONFIGURATION=$ICCUBE/bin/icCube.xml
+# fi
 #
 # icCube LOG4J configuration file. Use the existing ICCUBE_LOG4J_CONFIGURATION otherwise the default from install.
 # Handy when run from a Docker.
 #
-if [ -z "$ICCUBE_LOG4J_CONFIGURATION" ]; then
-ICCUBE_LOG4J_CONFIGURATION=$ICCUBE/bin/log4j.xml
-fi
-
+# if [ -z "$ICCUBE_LOG4J_CONFIGURATION" ]; then
+# ICCUBE_LOG4J_CONFIGURATION=$ICCUBE/bin/log4j.xml
+# fi
 #
 # icCube license file. Use the existing ICCUBE_LICENSE otherwise the default from install.
 # Handy when run from a Docker.
 #
-if [ -z "$ICCUBE_LICENSE" ]; then
-ICCUBE_LICENSE=$ICCUBE/bin/icCube-4.lic
-fi
-
-export ICCUBE_LICENSE ICCUBE_CONFIGURATION ICCUBE_LOG4J_CONFIGURATION
+# if [ -z "$ICCUBE_LICENSE" ]; then
+# ICCUBE_LICENSE=$ICCUBE/bin/icCube-4.lic
+# fi
+#
+# export ICCUBE_LICENSE ICCUBE_CONFIGURATION ICCUBE_LOG4J_CONFIGURATION
 
 #
 # Redefining java.io.tmpdir because cdp4j is attempting to create the folder cdp4j into that directory.

@@ -1,5 +1,8 @@
 ## ic3software/iccube
 
+This page is describing how to run this Docker for a production usage. For a trial/evaluation usage,
+please refer to this [page](README.md).
+
 ### Installation Folder
 
 Within the Docker container, icCube is being installed in the `/opt/icCube` folder and is running 
@@ -12,19 +15,18 @@ The icCube generated data is being stored into the `/home/ic3/icCube-data` folde
 The `icCube.xml` configuration `fileSystemRoot` is being configured as `/home/ic3/data` and it is visible
 from within the Docs application (`fileSystemRootVisibleInDocs`).
 
-### Run (Trial)
+### License Installation
 
-For a quick trial using the embedded community license and the data being kept within the container:
+The license file should be directly installed before starting icCube using a bind mounts (more on this later)
+to make the file `/opt/icCube/bin/icCube-4.lic` available in the Docker is pointing to your actual license file.
+Note that once, this _external_ license is available, the possibly installed license used for the evaluation/trial 
+is being ignored.
 
-    docker run -d --name icCube-community --restart unless-stopped -p 8282:8282 \
-            ic3software/iccube:latest
+### Mapping Host Folders 
 
-Note that once the container is deleted, all icCube data is being deleted as well.
-
-### Run (Advanced)
-
-The following is demonstrating both how to store `icCube-data` in the host and how to use specific configuration files
-from the host using Docker bind mounts:
+The following is demonstrating both how to store `icCube-data` in the host and how to use specific configuration
+files from the host using Docker bind mounts (e.g., **its license**). An approach using Docker volumes should be 
+very similar.
 
     ICCUBE_BIN=           -- host folder containing icCube-4.lic, icCube.xml, ...
                                     container: /opt/icCube/bin
@@ -51,10 +53,10 @@ from the host using Docker bind mounts:
             -v $ICCUBE_BIN/:/opt/icCube/bin \
             -v $ICCUBE_WEB_DATA:/home/ic3/data \
             -v $ICCUBE_DATA:/home/ic3/icCube-data \
-            ic3software/iccube:latest
+            ic3software/iccube:8.4.8
 
 (*) Those files are used to set up once the content of the `/home/ic3/icCube-data` corresponding directories.
-Please refer to this [page](https://www.iccube.com/support/documentation/user_guide/running_iccube/data_directory.php)
+Please refer to this [page](https://doc.iccube.com/?ic3topic=server.user_guide.running_iccube.data_directory)
 for some description of these folders.
 
 This example is assuming the Bind Mounts in the host are accessible from the Docker user. This should be fine for
@@ -64,7 +66,9 @@ Docker's volumes instead:
 - [permission-denied-on-accessing-host-directory-in-docker](https://stackoverflow.com/questions/24288616/permission-denied-on-accessing-host-directory-in-docker)
 - [is-it-possible-to-map-a-user-inside-the-docker-container-to-an-outside-user](https://stackoverflow.com/questions/57776452/is-it-possible-to-map-a-user-inside-the-docker-container-to-an-outside-user)
 
-Similarly, you can override single files (e.g., the license):
+### Mapping Host Files
+
+Similarly, you can override single files (e.g., **the license**):
 
     ICCUBE_BIN=           -- host folder containing icCube-4.lic, icCube.xml, ...
                                     container: /opt/icCube/bin
@@ -82,9 +86,7 @@ Similarly, you can override single files (e.g., the license):
             -v $ICCUBE_BIN/icCube-4.lic:/opt/icCube/bin/icCube-4.lic \
             -v $ICCUBE_WEB_DATA:/home/ic3/icCube-data \
             -v $ICCUBE_DATA:/home/ic3/data \
-            ic3software/iccube:latest
-
-An approach using Docker volumes should be very similar.
+            ic3software/iccube:8.4.8
 
 ### Run (Chrome/Chromium headless)
 
@@ -120,6 +122,11 @@ Once started you can access icCube by opening a browser:
 
     http://localhost:8282/icCube/console
 
-Login as `anonymous` (i.e., leave blank the username) or login with `admin / admin`.
+When evaluating icCube, connect as an anonymous user by leaving blank the username or as `admin` (password: `admin`).
+
+
+### Documentation
+
+The icCube documentation is available [here](https://doc.iccube.com).
 
 _

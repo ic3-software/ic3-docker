@@ -1,4 +1,4 @@
-FROM ibm-semeru-runtimes:open-17.0.8.1_1-jdk-focal
+FROM ibm-semeru-runtimes:open-21.0.1_12-jdk-focal
 #
 # Configure the "en_US.UTF-8" locale.
 #

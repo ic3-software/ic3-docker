@@ -84,8 +84,8 @@ Similarly, you can override single files (e.g., **the license**):
 
     docker run -d --name icCube --restart unless-stopped -p 8282:8282 \
             -v $ICCUBE_BIN/icCube-4.lic:/opt/icCube/bin/icCube-4.lic \
-            -v $ICCUBE_WEB_DATA:/home/ic3/icCube-data \
-            -v $ICCUBE_DATA:/home/ic3/data \
+            -v $ICCUBE_WEB_DATA:/home/ic3/data \
+            -v $ICCUBE_DATA:/home/ic3/icCube-data \
             ic3software/iccube:8.4.8
 
 ### Run (Chrome/Chromium headless)

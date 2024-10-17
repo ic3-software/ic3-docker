@@ -79,6 +79,11 @@ fi
 # -----------------------------------------------------------------------------
 
 #
+# ICCUBE_JAVA_CP :
+#
+#       when run from Docker allows for adding an extra folder
+#       for custom jars (e.g., JDBC driver).
+#
 # exec: when used from a Docker keep PID=1 to make a clean Docker stop
 #
-exec $JAVA $ICCUBE_JAVA_OPTS $ICCUBE_JAVA_OPTS_EX -cp "$ICCUBE/lib/*" crazydev.iccube.server.IcCubeServer
+exec $JAVA $ICCUBE_JAVA_OPTS $ICCUBE_JAVA_OPTS_EX -cp "$ICCUBE_JAVA_CP:$ICCUBE/lib/*" crazydev.iccube.server.IcCubeServer

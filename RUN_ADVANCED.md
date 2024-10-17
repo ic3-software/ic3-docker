@@ -116,6 +116,13 @@ For example the following is configuring the JVM with `1g` or RAM:
 
 Note that you can check how this variable is being used in the `script/etc/icCube.sh` file in this project.
 
+Since icCube 8.5.0, adding a custom JDBC driver (or any other jar) to the classpath can be done as following :
+
+    docker run ... \ 
+        -e ICCUBE_JAVA_CP="/opt/jdbc/*" \ 
+        -v /opt/jdbc:/opt/jdbc \
+        ...
+
 ### Access
 
 Once started you can access icCube by opening a browser:

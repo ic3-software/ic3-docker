@@ -123,6 +123,17 @@ Since icCube 8.5.0, adding a custom JDBC driver (or any other jar) to the classp
         -v /opt/jdbc:/opt/jdbc \
         ...
 
+### Command Line
+
+icCube can run to execute a single command and then exit.
+
+Since icCube 8.5.0, this can be done using the `ICCUBE_CMD_LINE` environment variable. For example, the following
+is asking icCube to write on the output console the available commands : 
+
+    docker run --rm \
+        -e ICCUBE_CMD_LINE="--help" \ 
+        ic3software/iccube-dev:8.5.0 
+
 ### Access
 
 Once started you can access icCube by opening a browser:

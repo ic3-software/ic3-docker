@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-debian:21.0.2-21.32
+FROM azul/zulu-openjdk-debian:21.0.6-21.40
 
 #
 # Configure the "en_US.UTF-8" locale.

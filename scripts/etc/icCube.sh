@@ -54,7 +54,7 @@ mkdir -p "$ICCUBE_TMPDIR"
 #
 # icCube JAVA setup
 #
-ICCUBE_JAVA_OPTS_EX="-DicCube.install=$ICCUBE -Djava.io.tmpdir=$ICCUBE_TMPDIR"
+ICCUBE_JAVA_OPTS_EX="--enable-native-access=ALL-UNNAMED --sun-misc-unsafe-memory-access=allow --add-opens=java.base/java.nio=ALL-UNNAMED -DicCube.install=$ICCUBE -Djava.io.tmpdir=$ICCUBE_TMPDIR"
 
 #
 # Use the existing env. ICCUBE_JAVA_OPTS otherwise default to -Xmx512m only.
@@ -90,4 +90,4 @@ fi
 #
 # exec: when used from a Docker keep PID=1 to make a clean Docker stop
 #
-exec $JAVA $ICCUBE_JAVA_OPTS $ICCUBE_JAVA_OPTS_EX -cp "$ICCUBE_JAVA_CP:$ICCUBE/lib/*" crazydev.iccube.server.IcCubeServer $ICCUBE_CMD_LINE
+exec $JAVA $ICCUBE_JAVA_OPTS $ICCUBE_JAVA_OPTS_EX -cp "$ICCUBE_JAVA_CP:$ICCUBE/lib/*:$ICCUBE/plugins/*" crazydev.iccube.server.IcCubeServer $ICCUBE_CMD_LINE

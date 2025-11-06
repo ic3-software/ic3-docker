@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:25.0.0-25.28
+FROM azul/zulu-openjdk-alpine:25.0.1-25.30
 
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en

@@ -102,7 +102,20 @@ Or with the `--no-sandbox` option is the security profile is not possible:
     docker run ... \
         -e ICCUBE_CHROME_NO_SANDBOX=1 \
         ...
-    
+
+**Chrome/Chromium Unexpected Crash**
+
+On certain system configuration, when running with `--no-sandbox`, Chrome/Chromium may crash because of GPU issue:
+
+    [119:119:0715/150056.902718:ERROR:content/browser/gpu/gpu_process_host.cc:1005] GPU process exited unexpectedly: exit_code=11
+    [119:119:0715/150056.902740:WARNING:content/browser/gpu/gpu_process_host.cc:1447] The GPU process has crashed 1 time(s)
+
+To resolve this issue, pass the following options using the `CHROMIUM_USER_FLAGS` environment variable:
+
+    docker run ... \
+        -e CHROMIUM_USER_FLAGS="--enable-logging --v=1 --disable-gpu-sandbox"
+        ...
+
 ### Run (JAVA Options)
 
 You can fully configure the **JVM** by using your own `bin/icCube.sh` file as demonstrated above, or you can
